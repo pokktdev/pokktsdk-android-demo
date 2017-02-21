@@ -1,0 +1,15 @@
+<resources>
+
+    <!--ui metric units-->
+    <dimen name="dimen_btn_txt_size">20sp</dimen>
+    <dimen name="dimen_edt_txt_size">20sp</dimen>
+    <dimen name="dimen_txt_size">20sp</dimen>
+
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="dimen_60dp">60dp</dimen>
+
+</resources>

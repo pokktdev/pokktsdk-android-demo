@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="test_release_version">10</string>
+    <string name="framework_name">Native</string>
+
+    <string name="app_name">PokktAds Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_export">Export Log</string>
+    <string name="action_export_cloud">Export Log To Cloud</string>
+    <string name="google_analytics_id">UA-64853553-1</string>
+    <string name="mix_panel_project_token">927688624ac5894332babbe763c23aa4</string>
+    <string name="flurry_application_key">W8XX8KPBS497Y8J6JYTT</string>
+
+
+    <!--PokktAdTypeFragment-->
+    <string name="txt_btn_ad_type_video">VIDEO ADS</string>
+    <string name="txt_btn_ad_type_interstitial">INTERSTITIAL ADS</string>
+    <string name="txt_btn_ad_type_banner">BANNER ADS</string>
+    <string name="txt_btn_more">MORE...</string>
+    <string name="txt_sdk_version">SDK V%s</string>
+    <string name="txt_test_release_version">TEST RELEASE: %s</string>
+
+    <!--PokktBannerFragment-->
+    <string name="txt_btn_load_top_banner">LOAD TOP BANNER</string>
+    <string name="txt_btn_destroy_top_banner">DESTROY TOP BANNER</string>
+    <string name="txt_btn_load_bottom_banner">LOAD BOTTOM BANNER</string>
+    <string name="txt_btn_destroy_bottom_banner">DESTROY BOTTOM BANNER</string>
+
+    <!--PokktInterstitialFragment || PokktVideoFragment-->
+    <string name="txt_btn_cache_rewarded">CACHE REWARDED AD</string>
+    <string name="txt_btn_show_rewarded">SHOW REWARDED AD</string>
+    <string name="txt_btn_cache_non_rewarded">CACHE NON REWARDED AD</string>
+    <string name="txt_btn_show_non_rewarded">SHOW NON REWARDED AD</string>
+
+
+    <!--Common-->
+    <string name="txt_place_holder">Default screen name...</string>
+    <string name="txt_screen_name">ENTER SCREEN NAME:</string>
+    <string name="txt_earned_points">EARNED POINTS: %s</string>
+
+    <!--PokktSettingsFragment-->
+    <string name="txt_settings">SETTINGS</string>
+    <string name="txt_ip_address">IP ADDRESS:</string>
+    <string name="txt_application_id">APPLICATION ID:</string>
+    <string name="txt_security_key">SECURITY KEY:</string>
+    <string name="txt_export_log">EXPORT LOG</string>
+    <string name="txt_export_to_cloud">EXPORT LOG TO CLOUD</string>
+
+
+</resources>

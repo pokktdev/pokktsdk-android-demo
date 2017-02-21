@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="collapseActionView"
+        android:title="@string/action_settings"/>
+    <item
+        android:id="@+id/action_export_log"
+        android:orderInCategory="200"
+        app:showAsAction="collapseActionView"
+        android:title="@string/action_export"/>
+    <item
+        android:id="@+id/action_export_log_cloud"
+        android:orderInCategory="300"
+        app:showAsAction="collapseActionView"
+        android:title="@string/action_export_cloud"/>
+</menu>

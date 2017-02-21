@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="clr_grey">#666765</color>
+    <color name="clr_btn_bg">#99ffffff</color>
+    <color name="clr_white">#ffffff</color>
+    <color name="clr_blue">#65c5ed</color>
+</resources>

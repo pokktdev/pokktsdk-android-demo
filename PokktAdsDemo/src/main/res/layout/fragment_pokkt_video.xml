@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/clr_white">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rotation="-30"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pokkt_logo" />
+
+    <TextView
+        android:id="@+id/txt_ad_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:gravity="center"
+        android:text="@string/txt_btn_ad_type_video"
+        android:textStyle="bold"
+        android:textColor="@color/clr_grey"
+        android:textSize="@dimen/dimen_txt_size" />
+
+    <TextView
+        android:id="@+id/txt_earned_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:text="@string/txt_earned_points"
+        android:textColor="@color/clr_grey"
+        android:textSize="@dimen/dimen_txt_size" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/txt_earned_points"
+        android:layout_below="@id/txt_ad_type"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:context="com.pokkt.demo.fragments.PokktAdTypeFragment">
+
+            <TextView
+                android:id="@+id/txt_screen_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:text="@string/txt_screen_name"
+                android:textColor="@color/clr_grey"
+                android:textSize="@dimen/dimen_txt_size" />
+
+            <EditText
+                android:id="@+id/edt_screen_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:background="@drawable/drawable_edt_bg"
+                android:padding="@dimen/dimen_5dp"
+                android:text="@string/txt_place_holder"
+                android:textColor="@color/clr_grey"
+                android:textSize="@dimen/dimen_edt_txt_size" />
+
+            <include
+                android:id="@+id/btn_cache_rewarded"
+                layout="@layout/layout_button" />
+
+            <include
+                android:id="@+id/btn_show_rewarded"
+                layout="@layout/layout_button" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dimen_40dp" />
+
+            <include
+                android:id="@+id/btn_cache_non_rewarded"
+                layout="@layout/layout_button" />
+
+            <include
+                android:id="@+id/btn_show_non_rewarded"
+                layout="@layout/layout_button" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
