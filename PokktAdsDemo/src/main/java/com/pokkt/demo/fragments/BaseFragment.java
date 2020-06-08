@@ -9,12 +9,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pokkt.ad.demo.R;
+import com.pokkt.sdk.pokktnativead.PokktNativeAd;
 
 /**
  * Created by abhin on 20-01-2017 at 14:15.
  */
 
 public class BaseFragment extends Fragment{
+    protected PokktNativeAd pokktNativeAd;
 
     public BaseFragment() {
     }

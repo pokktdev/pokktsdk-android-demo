@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/clr_white"
+    android:clickable="true">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/pokkttoolbarparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/pokkttoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="LISTVIEW"
+            app:titleTextColor="@android:color/black"
+            app:navigationIcon="?attr/homeAsUpIndicator">
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+<!--    <ListView-->
+<!--        android:id="@+id/pokktoslist"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@id/pokkttoolbarparent">-->
+<!--    </ListView>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pokktoslist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dp"
+        android:scrollbars="vertical" />
+
+</RelativeLayout>

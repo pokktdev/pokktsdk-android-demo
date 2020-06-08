@@ -8,15 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.pokkt.PokktAds;
-import com.pokkt.demo.utility.FragmentTransactionManager;
 import com.pokkt.ad.demo.R;
-
+import com.pokkt.demo.utility.FragmentTransactionManager;
 
 public class PokktAdTypeFragment extends BaseFragment {
 
     // ui
-    private TextView txtTestRelease,txtFrameworkName, txtSDKVersion;
-    private Button btnAdTypeVideo, btnAdTypeInterstitial, btnAdTypeBanner, btnAdTypeMore;
+    private Button btnAdTypeFullScreen, btnAdTypeBanner, btnAdTypeNative;
+    private TextView txtSDKVersion;
 
     public PokktAdTypeFragment() {
         // Required empty public constructor
@@ -35,21 +34,16 @@ public class PokktAdTypeFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_pokkt_ad_type, container, false);
 
         //version info
-        txtTestRelease = (TextView) findView(rootView, R.id.txt_test_release_version);
-        txtFrameworkName = (TextView) findView(rootView, R.id.txt_framework_name);
-        txtSDKVersion = (TextView) findView(rootView, R.id.txt_sdk_version);
+        ((TextView) findView(rootView, R.id.txt_sdk_version)).setText(PokktAds.getSDKVersion());
 
-        //video
-        btnAdTypeVideo = (Button) findView(findView(rootView, R.id.btn_ad_type_video), R.id.button);
-
-        //interstitial
-        btnAdTypeInterstitial = (Button) findView(findView(rootView, R.id.btn_ad_type_interstitial), R.id.button);
+        //Fullscreen
+        btnAdTypeFullScreen = (Button) findView(findView(rootView, R.id.btn_ad_type_fullscreen), R.id.button);
 
         //banner
         btnAdTypeBanner = (Button) findView(findView(rootView, R.id.btn_ad_type_banner), R.id.button);
 
-        //more == settings
-        btnAdTypeMore = (Button) findView(findView(rootView, R.id.btn_ad_type_more), R.id.button);
+        //native
+        btnAdTypeNative = (Button) findView(findView(rootView, R.id.btn_ad_type_native), R.id.button);
 
         return rootView;
     }
@@ -61,37 +55,13 @@ public class PokktAdTypeFragment extends BaseFragment {
 
         // setup data
 
-        // txtTestRelease
-        if (getResources().getBoolean(R.bool.is_test_release)) {
-            txtTestRelease.setVisibility(View.VISIBLE);
-            txtTestRelease.setText(String.format(getString(R.string.txt_test_release_version), getString(R.string.test_release_version)));
-            setFont(txtTestRelease);
-
-            txtFrameworkName.setVisibility(View.VISIBLE);
-            txtFrameworkName.setText(getString(R.string.framework_name));
-            setFont(txtFrameworkName);
-        }
-
-        // txtSDKVersion
-        txtSDKVersion.setText(String.format(getString(R.string.txt_sdk_version), PokktAds.getSDKVersion()));
-        setFont(txtSDKVersion);
-
-        // btnAdTypeVideo
-        btnAdTypeVideo.setText(getString(R.string.txt_btn_ad_type_video));
-        setFont(btnAdTypeVideo);
-        btnAdTypeVideo.setOnClickListener(new View.OnClickListener() {
+        // btnAdTypeFullScreen
+        btnAdTypeFullScreen.setText(getString(R.string.txt_btn_ad_type_fullscreen));
+        setFont(btnAdTypeFullScreen);
+        btnAdTypeFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openVideoAdsShowcase();
-            }
-        });
-        // btnAdTypeInterstitial
-        btnAdTypeInterstitial.setText(getString(R.string.txt_btn_ad_type_interstitial));
-        setFont(btnAdTypeInterstitial);
-        btnAdTypeInterstitial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openInterstitialAdsShowcase();
+                openFullScreenAdsShowcase();
             }
         });
         // btnAdTypeBanner
@@ -103,27 +73,20 @@ public class PokktAdTypeFragment extends BaseFragment {
                 openBannerAdsShowcase();
             }
         });
-        // btnAdTypeMore
-        btnAdTypeMore.setText(getString(R.string.txt_btn_more));
-        setFont(btnAdTypeMore);
-        btnAdTypeMore.setOnClickListener(new View.OnClickListener() {
+        // btnAdTypeOutStream
+        btnAdTypeNative.setText(getString(R.string.txt_btn_ad_type_native));
+        setFont(btnAdTypeNative);
+        btnAdTypeNative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMoreSettings();
+                openNativeAdsShowcase();
             }
         });
-
-
     }
 
-    private void openVideoAdsShowcase() {
-        PokktVideoFragment fragment = new PokktVideoFragment();
-        FragmentTransactionManager.addFragmentWithTag(getActivity(), R.id.container, fragment, PokktVideoFragment.class.getSimpleName());
-    }
-
-    private void openInterstitialAdsShowcase() {
-        PokktInterstitialFragment fragment = new PokktInterstitialFragment();
-        FragmentTransactionManager.addFragmentWithTag(getActivity(), R.id.container, fragment, PokktInterstitialFragment.class.getSimpleName());
+    private void openFullScreenAdsShowcase() {
+        PokktFullScreenFragment fragment = new PokktFullScreenFragment();
+        FragmentTransactionManager.addFragmentWithTag(getActivity(), R.id.container, fragment, PokktFullScreenFragment.class.getSimpleName());
     }
 
     private void openBannerAdsShowcase() {
@@ -131,9 +94,9 @@ public class PokktAdTypeFragment extends BaseFragment {
         FragmentTransactionManager.addFragmentWithTag(getActivity(), R.id.container, fragment, PokktBannerFragment.class.getSimpleName());
     }
 
-    private void openMoreSettings() {
-        PokktSettingsFragment fragment = new PokktSettingsFragment();
-        FragmentTransactionManager.addFragmentWithTag(getActivity(), R.id.container, fragment, PokktSettingsFragment.class.getSimpleName());
+    private void openNativeAdsShowcase() {
+        PokktNativeAdFragment fragment = new PokktNativeAdFragment();
+        FragmentTransactionManager.addFragmentWithTag(getActivity(), R.id.container, fragment, PokktNativeAdFragment.class.getSimpleName());
     }
 
     @Override

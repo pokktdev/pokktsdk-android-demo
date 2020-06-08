@@ -8,35 +8,10 @@
     <string name="action_settings">Settings</string>
     <string name="action_export">Export Log</string>
     <string name="action_export_cloud">Export Log To Cloud</string>
-    <string name="google_analytics_id">UA-64853553-1</string>
-    <string name="mix_panel_project_token">927688624ac5894332babbe763c23aa4</string>
-    <string name="flurry_application_key">W8XX8KPBS497Y8J6JYTT</string>
-
-
-    <!--PokktAdTypeFragment-->
-    <string name="txt_btn_ad_type_video">VIDEO ADS</string>
-    <string name="txt_btn_ad_type_interstitial">INTERSTITIAL ADS</string>
-    <string name="txt_btn_ad_type_banner">BANNER ADS</string>
-    <string name="txt_btn_more">MORE...</string>
-    <string name="txt_sdk_version">SDK V%s</string>
-    <string name="txt_test_release_version">TEST RELEASE: %s</string>
-
-    <!--PokktBannerFragment-->
-    <string name="txt_btn_load_top_banner">LOAD TOP BANNER</string>
-    <string name="txt_btn_destroy_top_banner">DESTROY TOP BANNER</string>
-    <string name="txt_btn_load_bottom_banner">LOAD BOTTOM BANNER</string>
-    <string name="txt_btn_destroy_bottom_banner">DESTROY BOTTOM BANNER</string>
-
-    <!--PokktInterstitialFragment || PokktVideoFragment-->
-    <string name="txt_btn_cache_rewarded">CACHE REWARDED AD</string>
-    <string name="txt_btn_show_rewarded">SHOW REWARDED AD</string>
-    <string name="txt_btn_cache_non_rewarded">CACHE NON REWARDED AD</string>
-    <string name="txt_btn_show_non_rewarded">SHOW NON REWARDED AD</string>
-
 
     <!--Common-->
-    <string name="txt_place_holder">Default screen name...</string>
-    <string name="txt_screen_name">ENTER SCREEN NAME:</string>
+    <string name="txt_place_holder">Screen Id From Dashboard</string>
+    <string name="txt_screen_name">ENTER SCREEN ID:</string>
     <string name="txt_earned_points">EARNED POINTS: %s</string>
 
     <!--PokktSettingsFragment-->
@@ -46,6 +21,35 @@
     <string name="txt_security_key">SECURITY KEY:</string>
     <string name="txt_export_log">EXPORT LOG</string>
     <string name="txt_export_to_cloud">EXPORT LOG TO CLOUD</string>
+
+    <!--PokktAdTypeFragment-->
+    <string name="txt_btn_ad_type_fullscreen">FULL SCREEN ADS</string>
+    <string name="txt_btn_ad_type_banner">BANNER ADS</string>
+    <string name="txt_btn_ad_type_native">NATIVE ADS</string>
+    <string name="txt_btn_play_by_tag">PLAY WITH TAG</string>
+    <string name="txt_sdk_version">SDK V%s</string>
+    <string name="txt_test_release_version">TEST RELEASE: %s</string>
+    <string name="txt_test_with">Test with container</string>
+
+    <!--PokktBannerFragment-->
+    <string name="txt_btn_load_top_banner">LOAD TOP BANNER</string>
+    <string name="txt_btn_destroy_top_banner">DESTROY TOP BANNER</string>
+    <string name="txt_btn_load_bottom_banner">LOAD BOTTOM BANNER</string>
+    <string name="txt_btn_destroy_bottom_banner">DESTROY BOTTOM BANNER</string>
+
+    <!--PokktFullScreenFragment-->
+    <string name="txt_btn_cache">CACHE AD</string>
+    <string name="txt_btn_show">SHOW AD</string>
+    <!--PokktNativeAdFragment-->
+    <string name="txt_btn_ad_type_scroll">SCROLL</string>
+    <string name="txt_btn_ad_type_list">LIST</string>
+    <string name="txt_btn_ad_type_webview">WEBVIEW</string>
+    <string name="large_text">POKKT warrants that you get healthy coverage at all times. Your Brand video will always play in full screen with a prominent click-to-action interactive End Card at the end of the playback.
+
+Unlike pre-roll video ads where completion rates aren’t something to talk about, POKKT shows the ad when the user is ready and receptive by utilizing a user opt-in model.
+
+POKKT combines these factors to brings in a strong recall value for your brand with clear positioning and true context within a user’s app journey. POKKT brings a wide array of metrics to measure your video campaign’s performance.
+POKKT’s viewability analytics and success metrics helps you track campaign performance on your dashboard. POKKT is integrated with over 300 Top Games and App Developers in India and South East Asia. By Integrating POKKT SDK, Developers in the region can monetise their non-paying users and maximise eCPMs through highly-targeted brand video Ads within their Apps.</string>
 
 
 </resources>

@@ -2,11 +2,10 @@ package com.pokkt.demo.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.pokkt.PokktAds;
 import com.pokkt.demo.utility.FragmentTransactionManager;
-import com.pokkt.demo.utility.Storage;
+
 import com.pokkt.demo.fragments.PokktAdTypeFragment;
 import com.pokkt.ad.demo.R;
 
@@ -30,7 +29,7 @@ public class MainActivity extends Activity {
     private void initPokktSDK() {
         PokktAds.setThirdPartyUserId("123456"); // optional
         PokktAds.Debugging.shouldDebug(this, true); // optional, set it to true if you want to enable logs for PokktSDK
-        PokktAds.setPokktConfig(Storage.getAppId(this), Storage.getSecurityKey(this), this); // required
+        PokktAds.setPokktConfig("f303768353fb89d188f24b36c4d80b2e", "f3b2bec2234694467398589e1606234b", this); // required
     }
 
 }

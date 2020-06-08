@@ -1,45 +1,71 @@
 apply plugin: 'com.android.application'
 android {
     String mRootDirectory
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.pokkt.ad.demo"
-        minSdkVersion 19
+        if(rootProject.ext.AR) {
+            minSdkVersion rootProject.ext.minSdkVersionForAR
+        } else {
+            minSdkVersion rootProject.ext.minSdkVersionSampleApp
+        }
         multiDexEnabled true
-        targetSdkVersion 23 // changing it to 24 causes MRAID creative to come as blank.
-        versionCode 20
-        versionName '6.0'
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        // changing it to 24 causes MRAID creative to come as blank.
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
 
         // Initialize variables
-        mRootDirectory = getRootDir();
+        mRootDirectory = getRootDir()
+
+        lintOptions {
+            disable "ResourceType"
+            checkReleaseBuilds false
+            abortOnError false
+        }
+
+        // timeStamping build
+        buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
     }
+
+    // TODO: should be conditional
+    android {
+        compileOptions {
+            sourceCompatibility rootProject.ext.javaForNormal
+            if(rootProject.ext.AR) {
+                targetCompatibility rootProject.ext.javaForAR
+            } else {
+                targetCompatibility rootProject.ext.javaForNormal
+            }
+        }
+    }
+
     signingConfigs {
         debugConfig {
             storeFile file(mRootDirectory + "/keystores/keystore.jks")
             storePassword("pokkt@123")
             keyAlias "pokkt_sample_app"
-            keyPassword("pokkt@123");
+            keyPassword("pokkt@123")
         }
         releaseConfig {
             storeFile file(mRootDirectory + "/keystores/keystore.jks")
             storePassword("pokkt@123")
             keyAlias "pokkt_sample_app"
-            keyPassword("pokkt@123");
+            keyPassword("pokkt@123")
         }
     }
     buildTypes {
         debug {
-            debuggable true
-            // shrinkResources false
-            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            debuggable rootProject.ext.debuggable
+            //shrinkResources rootProject.ext.shrinkResources
+            minifyEnabled rootProject.ext.minifyEnabled
         }
         release {
             //For release build debuggable false minifyEnabled true shrinkResources true
-            debuggable true
-            shrinkResources false
-            minifyEnabled true
+            debuggable rootProject.ext.debuggable
+            minifyEnabled rootProject.ext.minifyEnabled
+            //shrinkResources rootProject.ext.shrinkResources
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseConfig
         }
@@ -52,22 +78,22 @@ android {
     }
 }
 dependencies {
-    //Pokkt
-    //compile project(':PokktSDK')
-    compile project(':PokktSDK_aar')
-    //compile project(':PokktMediation')
+    implementation files('libs/pokkt_sdk/PokktSDK_v8.0.0.jar')
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.gms:play-services-base:17.1.0'
+    //GoogleAPIAvailability
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+    //Advertising id
+    implementation 'com.android.support:support-annotations:28.0.0'
+    //wrapper
+    implementation 'com.google.android.ads.consent:consent-library:1.0.7'
+    implementation('com.mopub:mopub-sdk:5.12.0@aar') {
+        transitive = true
+    }
 
-    compile files('libs/pokkt_sdk/comScore.jar')
-    compile files('libs/pokkt_sdk/moat.jar')
-    compile 'com.android.support:multidex:1.0.1'
-    compile 'com.android.support:support-v4:24.0.+'
-    compile 'com.google.android.gms:play-services:10.0.1'
-    compile 'com.google.android.gms:play-services-ads:10.0.1'
-    compile 'com.google.android.gms:play-services-gcm:10.0.1'
-    compile 'com.android.support:support-annotations:24.2.0'
-    compile 'com.android.support:recyclerview-v7:24.0.+'
-    //compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.google.android.gms:play-services-auth:10.0.1'
-
+    implementation 'com.google.android.material:material:1.1.0'
 }
 
+repositories {
+    mavenCentral()
+}

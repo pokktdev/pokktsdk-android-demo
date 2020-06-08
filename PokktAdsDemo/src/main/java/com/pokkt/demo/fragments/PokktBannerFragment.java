@@ -11,23 +11,26 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pokkt.PokktAds;
-import com.pokkt.sdk.banners.PokktBannerView;
-import com.pokkt.ad.demo.R;
+import androidx.appcompat.widget.Toolbar;
 
-public class PokktBannerFragment extends BaseFragment implements PokktAds.Banner.BannerAdDelegate {
+import com.pokkt.PokktAds;
+import com.pokkt.ad.demo.R;
+import com.pokkt.sdk.banners.PokktBannerView;
+
+public class PokktBannerFragment extends BaseFragment implements PokktAds.BannerAdDelegate {
 
     // ui
-    private TextView txtAdType,txtScreenName;
-    private EditText edtScreenName;
-    private Button btnLoadTopBanner, btnDestroyTopBanner, btnLoadBottomBanner, btnDestroyBottomBanner;
-    private ProgressBar progressLoadTopBanner, progressLoadBottomBanner;
+    private TextView txtScreenId;
+    private EditText edtScreenId;
+    private Button btnLoadTopBanner, btnDestroyTopBanner;
+    private ProgressBar progressLoadTopBanner;
     private PokktBannerView pokktBannerViewTop;
-    private PokktBannerView pokktBannerViewBottom;
 
     public PokktBannerFragment() {
         // Required empty public constructor
     }
+
+    private String bannerScreenId = "129cc53b4666f5ae1ebad6a9bc942764";
 
 
     @Override
@@ -42,12 +45,10 @@ public class PokktBannerFragment extends BaseFragment implements PokktAds.Banner
 
         View rootView = inflater.inflate(R.layout.fragment_pokkt_banner, container, false);
 
-        // ad type heading
-        txtAdType = (TextView) findView(rootView,R.id.txt_ad_type);
-
         // screen name
-        txtScreenName = (TextView) findView(rootView,R.id.txt_screen_name);
-        edtScreenName = (EditText) findView(rootView, R.id.edt_screen_name);
+        txtScreenId = (TextView) findView(rootView, R.id.txt_screen_id);
+        edtScreenId = (EditText) findView(rootView, R.id.edt_screen_id);
+        edtScreenId.setText(bannerScreenId);
 
         // load banner
         progressLoadTopBanner = (ProgressBar) findView(findView(rootView, R.id.btn_load_banner), R.id.progressBar);
@@ -56,16 +57,15 @@ public class PokktBannerFragment extends BaseFragment implements PokktAds.Banner
         // destroy banner
         btnDestroyTopBanner = (Button) findView(findView(rootView, R.id.btn_destroy_banner), R.id.button);
 
-        // load second banner
-        progressLoadBottomBanner = (ProgressBar) findView(findView(rootView, R.id.btn_load_second_banner), R.id.progressBar);
-        btnLoadBottomBanner = (Button) findView(findView(rootView, R.id.btn_load_second_banner), R.id.button);
-
-        // destroy second banner
-        btnDestroyBottomBanner = (Button) findView(findView(rootView, R.id.btn_destroy_second_banner), R.id.button);
-
         // pokkt banner containers = space needs to be provided to show banner on your screen using placeholder provided by PokktSDK
         pokktBannerViewTop = (PokktBannerView) findView(rootView, R.id.pokkt_banner_view_top);
-        pokktBannerViewBottom = (PokktBannerView) findView(rootView, R.id.pokkt_banner_view_bottom);
+        Toolbar toolbar = rootView.findViewById(R.id.pokkttoolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         return rootView;
     }
@@ -75,13 +75,9 @@ public class PokktBannerFragment extends BaseFragment implements PokktAds.Banner
         super.onViewCreated(view, savedInstanceState);
 
         // setup data
-
-        /// ad Type
-        setFont(txtAdType);
-
         // screen name
         //setFont(edtScreenName);
-        setFont(txtScreenName);
+        setFont(txtScreenId);
 
         // load banner
         setFont(btnLoadTopBanner);
@@ -105,40 +101,18 @@ public class PokktBannerFragment extends BaseFragment implements PokktAds.Banner
             }
         });
 
-        // load second banner
-        setFont(btnLoadBottomBanner);
-        setProgressbarColor(progressLoadBottomBanner);
-        btnLoadBottomBanner.setText(getString(R.string.txt_btn_load_bottom_banner));
-        btnLoadBottomBanner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressLoadBottomBanner.setVisibility(View.VISIBLE);
-                loadBanner(pokktBannerViewBottom);
-            }
-        });
-
-        // destroy second banner
-        setFont(btnDestroyBottomBanner);
-        btnDestroyBottomBanner.setText(getString(R.string.txt_btn_destroy_bottom_banner));
-        btnDestroyBottomBanner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                destroyBanner(pokktBannerViewBottom);
-            }
-        });
-
         // OPTIONAL but we SUGGEST you to implement callbacks as it will help you to determine the status of your request
-        PokktAds.Banner.setDelegate(this);
 
     }
 
     private void loadBanner(PokktBannerView pokktBannerView) {
-        String screenName = edtScreenName.getText().toString();
-        if (TextUtils.isEmpty(screenName)) {
-            Toast.makeText(getActivity(), "Please Enter Screen Name", Toast.LENGTH_SHORT).show();
+        String screenId = edtScreenId.getText().toString();
+        if (TextUtils.isEmpty(screenId)) {
+            Toast.makeText(getActivity(), "Please Enter Screen Id", Toast.LENGTH_SHORT).show();
+            progressLoadTopBanner.setVisibility(View.GONE);
             return;
         }
-        PokktAds.Banner.loadBanner(screenName, pokktBannerView);
+        PokktAds.showAd(screenId, PokktBannerFragment.this, pokktBannerView);
     }
 
     /**
@@ -148,38 +122,72 @@ public class PokktBannerFragment extends BaseFragment implements PokktAds.Banner
      * @param pokktBannerView
      */
     private void destroyBanner(PokktBannerView pokktBannerView) {
-        PokktAds.Banner.destroyContainer(pokktBannerView);
+        PokktAds.destroyBanner(pokktBannerView);
     }
 
     @Override
     public void onDestroy() {
         destroyBanner(pokktBannerViewTop);
-        destroyBanner(pokktBannerViewBottom);
         super.onDestroy();
     }
 
     // Banner Ad Callbacks
 
     @Override
-    public void bannerLoaded(String screenName) {
-        if(getActivity() == null){
-            return;
-        }
-        progressLoadTopBanner.setVisibility(View.GONE);
-        progressLoadBottomBanner.setVisibility(View.GONE);
+    public void adCachingResult(String screenId, boolean isSuccess, double reward, String errorMessage) {
 
-        Toast.makeText(getActivity(), "Banner Loaded", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void bannerLoadFailed(String screenName, String errorMessage) {
-        if(getActivity() == null){
+    public void adDisplayedResult(String screenId, final boolean isSuccess, final String errorMessage) {
+        if (getActivity() == null) {
             return;
         }
-        progressLoadTopBanner.setVisibility(View.GONE);
-        progressLoadBottomBanner.setVisibility(View.GONE);
-
-        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressLoadTopBanner.setVisibility(View.GONE);
+                if (isSuccess) {
+                    Toast.makeText(getActivity(), "Banner Loaded", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
+    @Override
+    public void adClosed(String screenId, boolean isComplete) {
+        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void adGratified(String screenId, double reward) {
+        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void bannerExpanded(String screenId) {
+
+    }
+
+    @Override
+    public void bannerResized(String screenId) {
+
+    }
+
+    @Override
+    public void bannerCollapsed(String screenId) {
+
+    }
+
+    @Override
+    public void adClicked(String screenId) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity(), "AdClicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
